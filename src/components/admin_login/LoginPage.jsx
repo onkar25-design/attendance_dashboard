@@ -22,37 +22,7 @@ const LoginPage = ({ onLogin }) => {
     setError('');
 
     try {
-      // Check if user is allowed
-      const { data: allowedUser, error: allowedUserError } = await supabase
-        .from('allowed_users')
-        .select()
-        .eq('email', email)
-        .single();
-
-      if (allowedUserError) {
-        console.error('Error checking allowed users:', allowedUserError);
-        if (allowedUserError.code === 'PGRST116') {
-          console.log('No matching user found in allowed_users table');
-          setError('Invalid email or password');
-        } else {
-          setError('An error occurred while verifying user access. Please try again.');
-        }
-        return;
-      }
-
-      if (!allowedUser) {
-        console.log('User not found in allowed_users table');
-        setError('Invalid email or password');
-        return;
-      }
-
-      if (allowedUser.password !== password) {
-        console.log('Password mismatch');
-        setError('Invalid email or password');
-        return;
-      }
-
-      // Attempt to sign in
+      // Attempt to sign in using Supabase's auth method
       const { data: signInData, error: signInError } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
@@ -60,7 +30,7 @@ const LoginPage = ({ onLogin }) => {
 
       if (signInError) {
         console.error('Sign-in error:', signInError);
-        setError('An error occurred during sign-in. Please try again.');
+        setError('Invalid email or password'); // Show error if sign-in fails
         return;
       }
 
