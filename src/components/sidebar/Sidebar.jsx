@@ -14,6 +14,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import companyLogo from './company-logo.png';
 import './Sidebar.css'; // Make sure to create this CSS file
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import EmployeeListIcon from '@mui/icons-material/People'; // Optional: Import an icon for Employee List
 
 const NestedMenuItem = ({ icon, primary, children, onClick, depth = 0, path }) => {
   const [open, setOpen] = useState(false);

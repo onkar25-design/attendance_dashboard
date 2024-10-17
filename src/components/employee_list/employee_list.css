@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4; /* Light background for contrast */
+    background: linear-gradient(to right, #e0eafc, #cfdef3); /* Gradient background */
     margin: 0;
     padding: 0;
 }
@@ -12,57 +12,50 @@ body {
     margin: 20px auto; /* Center the container */
     padding: 20px;
     background-color: #ffffff; /* White background for the list */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 12px; /* Slightly more rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow for depth */
 }
 
 /* Title styles */
 .employee-list-title {
-    font-size: 24px; /* Larger font for the title */
+    font-size: 28px; /* Larger font for the title */
     color: #333; /* Darker text for contrast */
     margin-bottom: 20px; /* Space below the title */
     text-align: center; /* Center the title */
+    font-weight: bold; /* Bold title */
 }
 
 /* Employee item styles */
 .employee-item {
     display: flex; /* Flexbox for alignment */
-    justify-content: space-between; /* Space between items */
     align-items: center; /* Center items vertically */
     padding: 15px; /* Padding for each item */
     border-bottom: 1px solid #e0e0e0; /* Light border for separation */
-    transition: background-color 0.3s; /* Smooth background transition */
+    transition: background-color 0.3s, transform 0.3s; /* Added transform transition */
 }
 
 .employee-item:hover {
-    background-color: #f9f9f9; /* Light hover effect */
+    background-color: #f1f1f1; /* Light hover effect */
+    transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
+/* Employee details styles */
+.employee-details {
+    flex-grow: 1; /* Allow details to take up remaining space */
+    margin-left: 15px; /* Increased space between images and text */
 }
 
 /* Employee name styles */
 .employee-name {
-    font-size: 18px; /* Font size for names */
-    color: #555; /* Slightly lighter text */
+    font-size: 20px; /* Increased font size for names */
+    color: #333; /* Darker text */
+    font-weight: bold; /* Bold names */
 }
 
 /* Employee role styles */
 .employee-role {
-    font-size: 14px; /* Smaller font for roles */
-    color: #888; /* Lighter color for roles */
-}
-
-/* Button styles */
-.button {
-    padding: 10px 15px; /* Padding for buttons */
-    background-color: #007bff; /* Primary color */
-    color: white; /* White text */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Smooth transition */
-}
-
-.button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    font-size: 16px; /* Increased font size for roles */
+    color: #666; /* Darker color for roles */
 }
 
 /* Responsive styles */
@@ -77,3 +70,10 @@ body {
     }
 }
 
+/* Employee photo styles */
+.employee-photo {
+    width: 80px; /* Adjusted size for employee photo */
+    height: 80px; /* Adjusted size for employee photo */
+    border-radius: 50%; /* Optional: make the photo circular */
+    border: 2px solid #007bff; /* Added border for a polished look */
+}

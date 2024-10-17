@@ -3,12 +3,13 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import LoginPage from './components/admin_login/LoginPage';
 import Sidebar from './components/sidebar/Sidebar';
 import Dashboard from './components/admin_dashboard/Dashboard';
-import LeaveApprovalSystem from './components/leave_atteandance/LeaveApprovalSystem'; // Import the LeaveApprovalSystem component
+import LeaveApprovalSystem from './components/leave_atteandance/LeaveApprovalSystem';
 import LeaveCalendar from './components/leave_calendar/leave_calendar';
-import LeaveBalanceReport from './components/leave_balance/leave_balance'; // Import the LeaveBalanceReport component
-import AnnouncementPage from './components/announcements/announcement'; // Import the AnnouncementPage component
-import ManageEmployees from './components/employees/manageemployees'; // Import the ManageEmployees component
-import ManageAttendance from './components/attendance/manageattendance'; // Import the ManageAttendance component
+import LeaveBalanceReport from './components/leave_balance/leave_balance';
+import AnnouncementPage from './components/announcements/announcement';
+import ManageEmployees from './components/employees/manageemployees';
+import EmployeeList from './components/employee_list/employee_list';
+import ManageAttendance from './components/attendance/manageattendance';
 import { supabase } from './supabaseClient';
 import './App.css';
 
@@ -17,9 +18,8 @@ function App() {
   const [leaveData, setLeaveData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
- 
   const [sidebarOpen, setSidebarOpen] = useState(false);
- 
+
   useEffect(() => {
     const checkAuth = async () => {
       const { data: { session } } = await supabase.auth.getSession();
@@ -98,7 +98,6 @@ function App() {
                 )
               }
             />
-            {/* Add the new route for LeaveApprovalSystem */}
             <Route
               path="/manage/leaves/approve"
               element={
@@ -109,7 +108,6 @@ function App() {
                 )
               }
             />
-            {/* Add the new route for LeaveCalendar */}
             <Route
               path="/leave-calendar"
               element={
@@ -120,7 +118,6 @@ function App() {
                 )
               }
             />
-            {/* Add the new route for LeaveBalanceReport */}
             <Route
               path="/leave-balance"
               element={
@@ -131,7 +128,6 @@ function App() {
                 )
               }
             />
-            {/* Add the new route for Announcements */}
             <Route
               path="/announcements"
               element={
@@ -142,7 +138,6 @@ function App() {
                 )
               }
             />
-            {/* Add the new route for Manage Employees */}
             <Route
               path="/manage/employees/manage"
               element={
@@ -153,7 +148,16 @@ function App() {
                 )
               }
             />
-            {/* Add the new route for Manage Attendance */}
+            <Route
+              path="/manage/employees/list"
+              element={
+                isAuthenticated ? (
+                  <EmployeeList employees={[]} />
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
             <Route
               path="/manage/attendance/manage"
               element={
