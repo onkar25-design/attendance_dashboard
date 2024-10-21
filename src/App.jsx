@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LoginPage from './components/admin_login/LoginPage';
-import Sidebar from './components/sidebar/Sidebar';
+import EmployeeHome from './components/employee_home/employee_home'; // Import EmployeeHome
+import Sidebar from './components/sidebar/Sidebar'; // Import Sidebar
 import Dashboard from './components/admin_dashboard/Dashboard';
 import LeaveApprovalSystem from './components/leave_atteandance/LeaveApprovalSystem';
 import LeaveCalendar from './components/leave_calendar/leave_calendar';
@@ -10,7 +11,6 @@ import AnnouncementPage from './components/announcements/announcement';
 import ManageEmployees from './components/employees/manageemployees';
 import EmployeeList from './components/employee_list/employee_list';
 import ManageAttendance from './components/attendance/manageattendance';
-import { supabase } from './supabaseClient';
 import './App.css';
 
 function App() {
@@ -21,16 +21,6 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session) {
-        setIsAuthenticated(true);
-      }
-      setIsLoading(false);
-    };
-
-    checkAuth();
-
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -85,6 +75,16 @@ function App() {
                   <Navigate to="/dashboard" replace />
                 ) : (
                   <LoginPage onLogin={handleLogin} />
+                )
+              }
+            />
+            <Route
+              path="/employee-home"
+              element={
+                isAuthenticated ? (
+                  <EmployeeHome onLogout={handleLogout} />
+                ) : (
+                  <Navigate to="/" replace />
                 )
               }
             />
