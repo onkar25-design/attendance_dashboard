@@ -8,13 +8,11 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import PeopleIcon from '@mui/icons-material/People';
 import EventNoteIcon from '@mui/icons-material/EventNote';
-import AnnouncementIcon from '@mui/icons-material/Announcement'; // New import
-import AccessTimeIcon from '@mui/icons-material/AccessTime'; // New import
+import AnnouncementIcon from '@mui/icons-material/Announcement';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { useNavigate, useLocation } from 'react-router-dom';
 import companyLogo from './company-logo.png';
-import './Sidebar.css'; // Make sure to create this CSS file
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import EmployeeListIcon from '@mui/icons-material/People'; // Optional: Import an icon for Employee List
+import './Sidebar.css';
 
 const NestedMenuItem = ({ icon, primary, children, onClick, depth = 0, path }) => {
   const [open, setOpen] = useState(false);
@@ -34,7 +32,7 @@ const NestedMenuItem = ({ icon, primary, children, onClick, depth = 0, path }) =
     <>
       <ListItem 
         onClick={handleClick} 
-        style={{ paddingLeft: 24 * (depth + 1) }}  // Increased padding multiplier
+        style={{ paddingLeft: 24 * (depth + 1) }} 
         className={`menu-item ${isActive ? 'active' : ''}`}
       >
         {icon && <ListItemIcon>{icon}</ListItemIcon>}
@@ -183,7 +181,9 @@ const Sidebar = ({ onLogout, isMobile, isOpen, toggleSidebar }) => {
           keepMounted: true,
         }}
       >
-        {sidebarContent}
+        <div>
+          {sidebarContent}
+        </div>
       </Drawer>
     </>
   );

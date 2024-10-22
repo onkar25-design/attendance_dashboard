@@ -4,11 +4,20 @@
   position: fixed;
   height: 100vh;
   overflow-y: auto;
+  transition: width 0.3s ease; /* Smooth transition for width */
+}
+
+.sidebar-minimized {
+  width: 80px; /* Width when minimized */
 }
 
 .sidebar .MuiDrawer-paper {
   width: 280px;
   box-sizing: border-box;
+}
+
+.sidebar-minimized .MuiDrawer-paper {
+  width: 80px; /* Width when minimized */
 }
 
 .logo-container {
@@ -55,6 +64,10 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+.minimize-button {
+  margin: 8px; /* Add some margin for the minimize button */
+}
+
 @media (max-width: 768px) {
   .sidebar,
   .sidebar .MuiDrawer-paper {
@@ -67,4 +80,10 @@
   .sidebar .MuiDrawer-paper {
     width: 200px;
   }
+}
+
+/* Add styles for the close button */
+.close-button {
+  margin: 8px; /* Add some margin for the close button */
+  color: #000; /* Change color as needed */
 }

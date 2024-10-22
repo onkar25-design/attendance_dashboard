@@ -1,0 +1,70 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container styles */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header styles */
+.header {
+    text-align: center;
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Card styles */
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Card title styles */
+.card-title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Details styles */
+.details {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Detail item styles */
+.detail-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Icon styles */
+.icon {
+    color: #007bff;
+    margin-right: 10px;
+}
+
+/* Label styles */
+.label {
+    font-weight: bold;
+    color: #555;
+}
+
+/* Value styles */
+.value {
+    color: #333;
+}
+

@@ -202,3 +202,50 @@ body.login-page {
         opacity: 1;
     }
 }
+
+/* Add styles for user type selection */
+.login-container div {
+    margin-bottom: 20px; /* Space between user type selection and email input */
+}
+
+.login-container label {
+    margin-right: 15px; /* Space between radio buttons */
+}
+
+/* Add styles for the admin login link */
+.login-as-admin-link {
+    display: block; /* Make it a block element */
+    margin-top: 10px; /* Space above the link */
+    color: #388e3c; /* Link color */
+    text-align: center; /* Center the link */
+    text-decoration: underline; /* Underline to indicate it's a link */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.login-as-admin-link:hover {
+    color: #2e7d32; /* Darker color on hover */
+}
+
+/* Add styles for the back button */
+.back-button {
+    background-color: #388e3c; /* Green background */
+    color: #fff; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    padding: 10px 15px; /* Padding for better size */
+    font-size: 1rem; /* Font size */
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    margin-bottom: 10px; /* Space below the button */
+}
+
+.back-button:hover {
+    background-color: #2e7d32; /* Darker green on hover */
+}
+
+/* Add styles for the arrow */
+.back-button::before {
+    content: '\2190'; /* Left arrow */
+    margin-right: 5px; /* Space between arrow and text */
+}
