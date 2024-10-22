@@ -70,7 +70,7 @@ function App() {
   return (
     <Router>
       <div className="app">
-        {isAuthenticated && (
+        {isAuthenticated && !window.location.pathname.includes('/EmployeeDetails') && ( // Hide sidebar on EmployeeDetails page
           <Sidebar 
             onLogout={handleLogout} 
             isMobile={isMobile}
@@ -94,7 +94,7 @@ function App() {
               path="/EmployeeDetails" // Ensure this matches the file name
               element={
                 isAuthenticated ? (
-                  <EmployeeDetails />
+                  <EmployeeDetails onLogout={handleLogout} /> // Pass handleLogout to EmployeeDetails
                 ) : (
                   <Navigate to="/" replace />
                 )
