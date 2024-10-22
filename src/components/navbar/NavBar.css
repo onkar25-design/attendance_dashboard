@@ -23,7 +23,14 @@
     font-weight: 500;
 }
 
-.navbar-link:hover {
-    text-decoration: underline; /* Underline on hover */
+.logout-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
 }
 
+.logout-button:hover {
+    text-decoration: underline; /* Underline on hover */
+}

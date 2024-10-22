@@ -1,70 +1,91 @@
 /* General styles */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background: #e9ecef; /* Light gray background */
     margin: 0;
     padding: 0;
 }
 
 /* Container styles */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Header styles */
-.header {
-    text-align: center;
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 20px;
+.employee-details-container {
+    max-width: 600px;
+    margin: 0 auto; /* Center the container */
+    padding: 40px; /* Padding for the container */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 100vh; /* Full height */
 }
 
 /* Card styles */
-.card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-top: 20px;
+.employee-card {
+    background-color: #ffffff;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    padding: 30px; /* Padding for the card */
+    width: 100%; /* Full width */
 }
 
-/* Card title styles */
-.card-title {
-    font-size: 1.8rem;
-    color: #333;
-    margin-bottom: 15px;
-    text-align: center;
+/* Title styles */
+.employee-title {
+    font-size: 2.5rem; /* Title size */
+    color: #007bff; /* Blue color for title */
+    margin-bottom: 20px; /* Space below title */
+    text-align: center; /* Center title */
+    font-weight: bold; /* Bold title */
 }
 
-/* Details styles */
-.details {
+/* Info styles */
+.employee-info {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Stack items vertically */
 }
 
-/* Detail item styles */
-.detail-item {
+/* Info item styles */
+.info-item {
     display: flex;
-    align-items: center;
-    margin-bottom: 15px;
+    align-items: center; /* Center items vertically */
+    padding: 15px; /* Padding for info items */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f8f9fa; /* Light background for info items */
+    margin-bottom: 15px; /* Space between items */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.info-item:hover {
+    background-color: #d1ecf1; /* Light blue background on hover */
 }
 
 /* Icon styles */
 .icon {
-    color: #007bff;
-    margin-right: 10px;
+    color: #007bff; /* Icon color */
+    margin-right: 15px; /* Space between icon and text */
 }
 
 /* Label styles */
-.label {
-    font-weight: bold;
-    color: #555;
+.info-label {
+    font-weight: bold; /* Bold label */
+    color: #555; /* Darker label color */
+    flex: 1; /* Pushes value to the right */
 }
 
 /* Value styles */
-.value {
-    color: #333;
+.info-value {
+    color: #333; /* Darker text for values */
+    font-size: 1rem; /* Standard font size */
 }
 
+/* Responsive Design */
+@media (max-width: 600px) {
+    .employee-card {
+        padding: 20px; /* Adjust padding for smaller screens */
+    }
+    
+    .employee-title {
+        font-size: 1.8rem; /* Reduce title size on smaller screens */
+    }
+
+    .info-label, .info-value {
+        font-size: 0.9rem; /* Adjust font size for mobile */
+    }
+}

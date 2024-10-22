@@ -1,6 +1,5 @@
 import React from 'react';
 import { User, Mail, Phone, MapPin, Briefcase, Calendar } from 'lucide-react';
-import NavBar from '../navbar/NavBar'; // Import the NavBar
 
 const EmployeeDetails = () => {
   // Mock employee data
@@ -15,45 +14,58 @@ const EmployeeDetails = () => {
   };
 
   return (
-    <div className="container">
-      <NavBar /> {/* Add the NavBar here */}
-      <div className="card">
-        <h2 className="card-title">Employee Details</h2>
-        <div className="details">
-          <div className="detail-item">
+    <div className="employee-details-container">
+      <div className="employee-card">
+        <h2 className="employee-title">Employee Details</h2>
+        <div className="employee-info">
+          <div className="info-item">
             <User className="icon" size={24} />
-            <span className="label">Name:</span>
-            <span className="value">{employee.name}</span>
+            <div className="info-content">
+              <span className="info-label">Name:</span>
+              <span className="info-value">{employee.name}</span>
+            </div>
           </div>
-          <div className="detail-item">
+          <div className="info-item">
             <Mail className="icon" size={24} />
-            <span className="label">Email:</span>
-            <span className="value">{employee.email}</span>
+            <div className="info-content">
+              <span className="info-label">Email:</span>
+              <span className="info-value">{employee.email}</span>
+            </div>
           </div>
-          <div className="detail-item">
+          <div className="info-item">
             <Phone className="icon" size={24} />
-            <span className="label">Phone:</span>
-            <span className="value">{employee.phone}</span>
+            <div className="info-content">
+              <span className="info-label">Phone:</span>
+              <span className="info-value">{employee.phone}</span>
+            </div>
           </div>
-          <div className="detail-item">
+          <div className="info-item">
             <MapPin className="icon" size={24} />
-            <span className="label">Address:</span>
-            <span className="value">{employee.address}</span>
+            <div className="info-content">
+              <span className="info-label">Address:</span>
+              <span className="info-value">{employee.address}</span>
+            </div>
           </div>
-          <div className="detail-item">
+          <div className="info-item">
             <Briefcase className="icon" size={24} />
-            <span className="label">Department:</span>
-            <span className="value">{employee.department}</span>
+            <div className="info-content">
+              <span className="info-label">Department:</span>
+              <span className="info-value">{employee.department}</span>
+            </div>
           </div>
-          <div className="detail-item">
+          <div className="info-item">
             <Briefcase className="icon" size={24} />
-            <span className="label">Position:</span>
-            <span className="value">{employee.position}</span>
+            <div className="info-content">
+              <span className="info-label">Position:</span>
+              <span className="info-value">{employee.position}</span>
+            </div>
           </div>
-          <div className="detail-item">
+          <div className="info-item">
             <Calendar className="icon" size={24} />
-            <span className="label">Join Date:</span>
-            <span className="value">{employee.joinDate}</span>
+            <div className="info-content">
+              <span className="info-label">Join Date:</span>
+              <span className="info-value">{employee.joinDate}</span>
+            </div>
           </div>
         </div>
       </div>

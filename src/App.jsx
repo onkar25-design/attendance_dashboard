@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LoginPage from './components/admin_login/LoginPage';
+import Sidebar from './components/sidebar/Sidebar'; // Import Sidebar
 import Dashboard from './components/admin_dashboard/Dashboard';
 import LeaveApprovalSystem from './components/leave_atteandance/LeaveApprovalSystem';
 import LeaveCalendar from './components/leave_calendar/leave_calendar';
@@ -13,10 +14,12 @@ import EmployeeDetails from './components/employee_details/EmployeeDetails'; // 
 import './App.css';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Default to false
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Ensure this is false initially
   const [leaveData, setLeaveData] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Loading state
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,14 +31,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Check localStorage for authentication status
-    const user = localStorage.getItem('user');
-    if (user) {
-      setIsAuthenticated(true);
-    }
-
     // Simulate loading data or authentication check
     const fetchData = async () => {
+      // Simulate a delay for loading
       await new Promise(resolve => setTimeout(resolve, 1000));
       setIsLoading(false); // Set loading to false after fetching
     };
@@ -61,6 +59,10 @@ function App() {
     setLeaveData(newLeaveData);
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(prevState => !prevState); // Toggle the sidebar state
+  };
+
   if (isLoading) {
     return <div>Loading...</div>; // Show loading state
   }
@@ -68,13 +70,21 @@ function App() {
   return (
     <Router>
       <div className="app">
+        {isAuthenticated && (
+          <Sidebar 
+            onLogout={handleLogout} 
+            isMobile={isMobile}
+            isOpen={sidebarOpen}
+            toggleSidebar={toggleSidebar}
+          />
+        )}
         <div className={`main-content ${isAuthenticated && !isMobile ? 'with-sidebar' : ''}`}>
           <Routes>
             <Route
               path="/"
               element={
                 isAuthenticated ? (
-                  <Navigate to="/employee_details" replace /> // Redirect to employee_details after login
+                  <Navigate to="/EmployeeDetails" replace /> // Redirect to employee_details after login
                 ) : (
                   <LoginPage onLogin={handleLogin} /> // Pass handleLogin to LoginPage
                 )
