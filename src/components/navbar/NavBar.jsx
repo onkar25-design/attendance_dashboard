@@ -1,16 +1,36 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './NavBar.css'; // Create a CSS file for styling
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import './NavBar.css'; // Import the CSS file for styling
 
 const NavBar = ({ onLogout }) => {
+  const location = useLocation(); // Get the current location
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to manage menu visibility
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <nav className="navbar">
       <h1 className="navbar-title">Employee Portal</h1>
-      <div className="navbar-links">
-        <Link to="/employee_details" className="navbar-link">Profile</Link>
-        <Link to="/apply_leave" className="navbar-link">Apply Leave</Link>
+      <button className="menu-toggle" onClick={toggleMenu}>
+        ☰ {/* Hamburger menu icon */}
+      </button>
+      <div className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
+        <Link
+          to="/EmployeeDetails" // Ensure this matches the route path in App.jsx
+          className={`navbar-link ${location.pathname === '/EmployeeDetails' ? 'active' : ''}`}
+        >
+          Profile
+        </Link>
+        <Link
+          to="/ApplyLeave" // Ensure this matches the route path in App.jsx
+          className={`navbar-link ${location.pathname === '/ApplyLeave' ? 'active' : ''}`}
+        >
+          Apply Leave
+        </Link>
         <Link to="/leave_history" className="navbar-link">Leave History</Link>
-        <button className="navbar-link logout-button" onClick={onLogout}>Logout</button>
+        <span className="navbar-link logout-text" onClick={onLogout}>Logout</span>
       </div>
     </nav>
   );

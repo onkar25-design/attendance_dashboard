@@ -11,6 +11,7 @@ import ManageEmployees from './components/employees/manageemployees';
 import EmployeeList from './components/employee_list/employee_list';
 import ManageAttendance from './components/attendance/manageattendance';
 import EmployeeDetails from './components/employee_details/EmployeeDetails'; // Ensure this matches the file name
+import ApplyLeave from './components/apply_leave/ApplyLeave'; // Ensure the correct import path
 import './App.css';
 
 function App() {
@@ -95,6 +96,16 @@ function App() {
               element={
                 isAuthenticated ? (
                   <EmployeeDetails onLogout={handleLogout} /> // Pass handleLogout to EmployeeDetails
+                ) : (
+                  <Navigate to="/" replace />
+                )
+              }
+            />
+            <Route
+              path="/ApplyLeave" // Ensure this matches the Link path in NavBar.jsx
+              element={
+                isAuthenticated ? (
+                  <ApplyLeave /> // Render ApplyLeave component
                 ) : (
                   <Navigate to="/" replace />
                 )
