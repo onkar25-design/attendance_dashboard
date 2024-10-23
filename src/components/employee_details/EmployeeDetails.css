@@ -16,7 +16,7 @@ body, html {
 
 /* Updated Container styles */
 .app .employee-details-container {
-    width: 100%; /* Full width to cover the entire screen */
+    width: calc(100% - 10px); /* Adjust width to account for negative margin */
     max-width: 900px; /* Limit the maximum width */
     height: auto; /* Auto height to fit content */
     padding: 40px; /* Standard padding */
@@ -26,7 +26,8 @@ body, html {
     background: #1e1e1e; /* Darker background for the card */
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); /* Deeper shadow for card effect */
-    margin: 65px auto 10px -5px; /* Added top margin and shifted left by 20px */
+    margin: 65px auto 10px -5px; /* Keep the specified margin */
+    overflow: hidden; /* Ensure content doesn't overflow */
 }
 
 /* Profile Picture */
@@ -58,21 +59,21 @@ body, html {
 /* Info styles */
 .app .employee-details-container .employee-info {
     display: flex;
-    justify-content: space-between; /* Space between items */
-    width: 100%; /* Full width */
-    flex-wrap: nowrap; /* Prevent wrapping to keep items in a single row */
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    width: 100%;
 }
 
 /* Info item styles */
 .app .employee-details-container .info-item {
-    flex: 1; /* Equal width for each column */
     display: flex;
     align-items: center;
     padding: 15px; /* Standard padding */
     border-radius: 10px;
     background-color: #2c2c2c; /* Dark background for info items */
-    margin: 5px; /* Reduced margin for tighter layout */
+    margin: 5px 0; /* Vertical margin for stacked layout */
     transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
+    width: 100%; /* Ensure full width */
+    box-sizing: border-box; /* Include padding in width */
 }
 
 .app .employee-details-container .info-item:hover {
@@ -110,14 +111,19 @@ body, html {
 @media (max-width: 600px) {
     .app .employee-details-container {
         padding: 20px; /* Adjust padding for smaller screens */
-        margin: 80px 10px 10px -10px; /* Adjust margin for smaller screens */
+        margin: 80px 10px 10px -5px; /* Adjusted for smaller screens, keeping left margin */
     }
 
     .app .employee-details-container .employee-title {
         font-size: 1.8rem; /* Reduce title size on smaller screens */
     }
 
+    .app .employee-details-container .employee-subtitle {
+        font-size: 1.5rem; /* Adjust subtitle size for smaller screens */
+    }
+
     .app .employee-details-container .info-item {
-        flex: 1 1 100%; /* Full width on smaller screens */
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: flex-start; /* Align items to the start */
     }
 }

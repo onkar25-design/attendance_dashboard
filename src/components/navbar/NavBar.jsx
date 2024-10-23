@@ -29,7 +29,12 @@ const NavBar = ({ onLogout }) => {
         >
           Apply Leave
         </Link>
-        <Link to="/leave_history" className="navbar-link">Leave History</Link>
+        <Link
+          to="/LeaveHistory"
+          className={`navbar-link ${location.pathname === '/LeaveHistory' ? 'active' : ''}`}
+        >
+          Leave History
+        </Link>
         <span className="navbar-link logout-text" onClick={onLogout}>Logout</span>
       </div>
     </nav>
