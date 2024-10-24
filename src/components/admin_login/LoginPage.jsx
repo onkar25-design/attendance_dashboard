@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css';
 import companyLogo from './company-logo.png';
+import { supabase } from '../../supabaseClient'; // Import the Supabase client
 
 const LoginPage = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -18,30 +19,41 @@ const LoginPage = ({ onLogin }) => {
     };
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    // Static credentials
-    const adminEmail = 'admin@nxtgen.com';
-    const adminPassword = 'nxtgen';
-    const employeeEmail = 'employee@gmail.com';
-    const employeePassword = 'employee@123';
-
-    // Validate credentials based on user type  
     if (userType === 'employee') {
-      if (email === employeeEmail && password === employeePassword) {
-        onLogin(true); // Call onLogin to update authentication state
-        navigate('/EmployeeDetails'); // Redirect to EmployeeDetails after successful login
+      // Static credentials for employee
+      const employeeEmail = 'employee@gmail.com';
+      const employeePassword = 'employee@123';
+
+      if (email.trim() === employeeEmail && password.trim() === employeePassword) {
+        console.log('Employee login successful');
+        onLogin(true);
+        navigate('/EmployeeDetails'); // Ensure this path is correct
       } else {
-        setError('Invalid credentials for Employee login.'); // Invalid employee credentials
+        console.log('Invalid credentials for Employee login.');
+        setError('Invalid credentials for Employee login.');
       }
     } else if (userType === 'admin') {
-      if (email === adminEmail && password === adminPassword) {
-        onLogin(true); // Call onLogin to update authentication state
-        navigate('/admin_dashboard'); // Redirect to Admin Dashboard
-      } else {
-        setError('Invalid credentials for Admin login.'); // Invalid admin credentials
+      try {
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+        if (error) {
+          console.error('Supabase error:', error.message);
+          setError('Invalid credentials for Admin login.');
+        } else {
+          console.log('Admin login successful');
+          onLogin(true);
+          navigate('/admin_dashboard');
+        }
+      } catch (err) {
+        console.error('Unexpected error:', err);
+        setError('Unexpected error occurred.');
       }
     }
   };
@@ -56,9 +68,15 @@ const LoginPage = ({ onLogin }) => {
               <button 
                 type="button" 
                 className="back-button" 
-                onClick={() => setIsAdminLogin(false)} // Switch back to employee login
+                onClick={() => {
+                  setIsAdminLogin(false);
+                  setUserType('employee'); // Reset userType to employee
+                  setEmail(''); // Reset email field
+                  setPassword(''); // Reset password field
+                  setError(''); // Clear any error messages
+                }}
               >
-                Back {/* Only text, no arrow here */}
+                Back
               </button>
               <label htmlFor="email" className="login-label">Admin Email:</label>
               <input
@@ -107,7 +125,7 @@ const LoginPage = ({ onLogin }) => {
             href="#"
             onClick={() => {
               setUserType('admin');
-              setIsAdminLogin(true); // Switch to admin login
+              setIsAdminLogin(true);
             }}
             className="login-as-admin-link"
           >
